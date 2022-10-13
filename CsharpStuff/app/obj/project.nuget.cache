@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "SyMD/LhmAQfvrHydXmDilb0QYwphDZGXgNJOOYbh8H4EwQ1IDAy8V4PUXWU3W7dcrCnDf6HhgFL+6W8gackIxg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Gian Dumpit\\Desktop\\CsharpStuff\\app\\app.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Gian Dumpit\\.nuget\\packages\\raylib-cs\\4.2.0.1\\raylib-cs.4.2.0.1.nupkg.sha512",
+    "C:\\Users\\Gian Dumpit\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
