@@ -13,7 +13,7 @@ namespace Snake
         {
             string Score = "0";
             Raylib.InitWindow(800, 480, "Snake");
-            int GameState = 2;
+            int GameState = 0;
             Raylib.SetTargetFPS(60);
             int FacingTo = 0;
             Vector2 SHpos = new Vector2(330, Raylib.GetScreenHeight()/2);
