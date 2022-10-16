@@ -5,22 +5,26 @@ using static Raylib_cs.Raylib;
 using static Raylib_cs.KeyboardKey;
 using static Raylib_cs.Color;
 using System.Threading.Tasks;
-
 namespace Snake
 {
 
     
-    static class Program
+    class Program
     {
         
-        public void SpawnEnem(float PosX, float PosY) {
-            Console.WriteLine(PosX+PosY);
-        }
-
+        public Vector2 GetV2Pos() {
+                System.Random random = new System.Random(); 
+                int PosXNew = random.Next(1, Raylib.GetScreenWidth());
+                int PosYNew = random.Next(1, Raylib.GetScreenHeight());
+                return new Vector2(PosXNew, PosYNew);
+            }
 
         public static void Main()
         {
-            bool HasStartedWave = false;
+
+            
+
+            bool IsFood = false;
             string Score = "0";
             Raylib.InitWindow(800, 480, "Snake");
             int GameState = 0;
@@ -28,6 +32,11 @@ namespace Snake
             int FacingTo = 0;
             Vector2 SHpos = new Vector2(330, Raylib.GetScreenHeight()/2);
             Vector2 OrginPos = new Vector2(330, Raylib.GetScreenHeight()/2);
+
+            System.Random random = new System.Random(); 
+            int PosXNew = random.Next(1, Raylib.GetScreenWidth());
+            int PosYNew = random.Next(1, Raylib.GetScreenHeight());
+
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
@@ -104,8 +113,9 @@ namespace Snake
                         GameState = 2;
                     }
 
-                    if (HasStartedWave == false) {
-
+                    if (IsFood == false) {
+                        Raylib.DrawRectangle(PosXNew, PosYNew, 30, 30, Color.RED);
+                        IsFood = true;
                     }
 
                 }
