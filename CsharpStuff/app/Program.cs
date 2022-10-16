@@ -4,19 +4,30 @@ using System.Numerics;
 using static Raylib_cs.Raylib;
 using static Raylib_cs.KeyboardKey;
 using static Raylib_cs.Color;
+using System.Threading.Tasks;
 
 namespace Snake
 {
+
+    
     static class Program
     {
+        
+        public void SpawnEnem(float PosX, float PosY) {
+            Console.WriteLine(PosX+PosY);
+        }
+
+
         public static void Main()
         {
+            bool HasStartedWave = false;
             string Score = "0";
             Raylib.InitWindow(800, 480, "Snake");
             int GameState = 0;
             Raylib.SetTargetFPS(60);
             int FacingTo = 0;
             Vector2 SHpos = new Vector2(330, Raylib.GetScreenHeight()/2);
+            Vector2 OrginPos = new Vector2(330, Raylib.GetScreenHeight()/2);
             while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
@@ -89,8 +100,12 @@ namespace Snake
 
                     //Controls ^^
 
-                    if ((int)SHpos.X >= (int)Raylib.GetScreenWidth() || (int)SHpos.X <= 0) {
+                    if ((int)SHpos.X >= (int)Raylib.GetScreenWidth() || (int)SHpos.X <= 0 || (int)SHpos.Y <= 0 || (int)SHpos.Y >= (int)Raylib.GetScreenHeight()) {
                         GameState = 2;
+                    }
+
+                    if (HasStartedWave == false) {
+
                     }
 
                 }
@@ -105,11 +120,9 @@ namespace Snake
                         Vector2 mousePos = new Vector2(Raylib.GetMousePosition().X, Raylib.GetMousePosition().Y);
                     
                         if (Raylib.CheckCollisionPointRec(mousePos, RetryButton)) {
-                            Raylib.BeginDrawing();
                             GameState = 1;
-                            Raylib.EndDrawing();
+                            SHpos = OrginPos;
                         }
-
                     }
 
                 }
