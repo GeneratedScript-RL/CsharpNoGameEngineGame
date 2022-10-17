@@ -124,7 +124,7 @@ namespace RectangleBattle
                     }
                     else {
                         Raylib.DrawRectangle((int)PosXNew, (int)PosYNew, 30, 30, Color.RED);
-                        if (Raylib.GetCollisionRec(enemyrect, Head)) {
+                        if (Raylib.CheckCollisionRecs(enemyrect, Head)) {
                             Console.WriteLine("E");
                             IsEnemy = false;
                         }
