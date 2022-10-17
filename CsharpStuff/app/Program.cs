@@ -5,17 +5,17 @@ using static Raylib_cs.Raylib;
 using static Raylib_cs.KeyboardKey;
 using static Raylib_cs.Color;
 using System.Threading.Tasks;
-namespace Snake
+namespace RectangleBattle
 {
 
     
     class Program
     {
         
-        public Vector2 GetV2Pos() {
+        static public Vector2 GetV2Pos() {
                 System.Random random = new System.Random(); 
-                int PosXNew = random.Next(1, Raylib.GetScreenWidth());
-                int PosYNew = random.Next(1, Raylib.GetScreenHeight());
+                float PosXNew = random.Next(1, Raylib.GetScreenWidth());
+                float PosYNew = random.Next(1, Raylib.GetScreenHeight());
                 return new Vector2(PosXNew, PosYNew);
             }
 
@@ -24,9 +24,9 @@ namespace Snake
 
             
 
-            bool IsFood = false;
+            bool IsEnemy = false;
             string Score = "0";
-            Raylib.InitWindow(800, 480, "Snake");
+            Raylib.InitWindow(800, 480, "RectangleBattle");
             int GameState = 0;
             Raylib.SetTargetFPS(60);
             int FacingTo = 0;
@@ -34,8 +34,7 @@ namespace Snake
             Vector2 OrginPos = new Vector2(330, Raylib.GetScreenHeight()/2);
 
             System.Random random = new System.Random(); 
-            int PosXNew = random.Next(1, Raylib.GetScreenWidth());
-            int PosYNew = random.Next(1, Raylib.GetScreenHeight());
+
 
             while (!Raylib.WindowShouldClose())
             {
@@ -112,10 +111,23 @@ namespace Snake
                     if ((int)SHpos.X >= (int)Raylib.GetScreenWidth() || (int)SHpos.X <= 0 || (int)SHpos.Y <= 0 || (int)SHpos.Y >= (int)Raylib.GetScreenHeight()) {
                         GameState = 2;
                     }
-
-                    if (IsFood == false) {
-                        Raylib.DrawRectangle(PosXNew, PosYNew, 30, 30, Color.RED);
-                        IsFood = true;
+                    float PosXNew = 0.0f;
+                    float PosYNew = 0.0f;
+                    Rectangle enemyrect = new Rectangle(PosXNew, PosYNew, 30, 30);
+                    if (IsEnemy == false) {
+                        Vector2 newepos = GetV2Pos();
+                        PosXNew = newepos.X;
+                        PosYNew = newepos.Y;
+                        enemyrect = new Rectangle(PosXNew, PosYNew, 30, 30);
+                        Raylib.DrawRectangle((int)PosXNew, (int)PosYNew, 30, 30, Color.RED);
+                        IsEnemy = true;
+                    }
+                    else {
+                        Raylib.DrawRectangle((int)PosXNew, (int)PosYNew, 30, 30, Color.RED);
+                        if (Raylib.GetCollisionRec(enemyrect, Head)) {
+                            Console.WriteLine("E");
+                            IsEnemy = false;
+                        }
                     }
 
                 }
